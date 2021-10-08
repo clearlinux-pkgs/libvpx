@@ -4,7 +4,7 @@
 #
 Name     : libvpx
 Version  : 1.11.0
-Release  : 22
+Release  : 23
 URL      : https://github.com/webmproject/libvpx/archive/v1.11.0/libvpx-1.11.0.tar.gz
 Source0  : https://github.com/webmproject/libvpx/archive/v1.11.0/libvpx-1.11.0.tar.gz
 Summary  : No detailed summary available
@@ -86,7 +86,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1633716507
+export SOURCE_DATE_EPOCH=1633724640
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -109,7 +109,7 @@ export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
 make  %{?_smp_mflags}  V=1 AS_FLAGS="-a AMD64"
 popd
 %install
-export SOURCE_DATE_EPOCH=1633716507
+export SOURCE_DATE_EPOCH=1633724640
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libvpx
 cp %{_builddir}/libvpx-1.11.0/LICENSE %{buildroot}/usr/share/package-licenses/libvpx/4dbe7c1f3a1833a88333a7c282119323e9ef44fa
@@ -119,7 +119,7 @@ cp %{_builddir}/libvpx-1.11.0/third_party/libyuv/LICENSE %{buildroot}/usr/share/
 cp %{_builddir}/libvpx-1.11.0/third_party/x86inc/LICENSE %{buildroot}/usr/share/package-licenses/libvpx/697c7d5a9839cf4160acd85431b0c58be874dba8
 pushd ../buildavx2/
 %make_install_v3
-/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/clear/optimized-elf/ %{buildroot}/usr/clear/filemap/filemap-%{name}
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 popd
 %make_install
 
@@ -130,7 +130,7 @@ popd
 %defattr(-,root,root,-)
 /usr/bin/vpxdec
 /usr/bin/vpxenc
-/usr/clear/optimized-elf/bin*
+/usr/share/clear/optimized-elf/bin*
 
 %files dev
 %defattr(-,root,root,-)
@@ -149,14 +149,14 @@ popd
 
 %files filemap
 %defattr(-,root,root,-)
-/usr/clear/filemap/filemap-libvpx
+/usr/share/clear/filemap/filemap-libvpx
 
 %files lib
 %defattr(-,root,root,-)
-/usr/clear/optimized-elf/lib*
 /usr/lib64/libvpx.so.7
 /usr/lib64/libvpx.so.7.0
 /usr/lib64/libvpx.so.7.0.0
+/usr/share/clear/optimized-elf/lib*
 
 %files license
 %defattr(0644,root,root,0755)
