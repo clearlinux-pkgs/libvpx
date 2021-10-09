@@ -4,7 +4,7 @@
 #
 Name     : libvpx
 Version  : 1.11.0
-Release  : 23
+Release  : 24
 URL      : https://github.com/webmproject/libvpx/archive/v1.11.0/libvpx-1.11.0.tar.gz
 Source0  : https://github.com/webmproject/libvpx/archive/v1.11.0/libvpx-1.11.0.tar.gz
 Summary  : No detailed summary available
@@ -86,7 +86,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1633724640
+export SOURCE_DATE_EPOCH=1633758347
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -109,7 +109,7 @@ export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
 make  %{?_smp_mflags}  V=1 AS_FLAGS="-a AMD64"
 popd
 %install
-export SOURCE_DATE_EPOCH=1633724640
+export SOURCE_DATE_EPOCH=1633758347
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libvpx
 cp %{_builddir}/libvpx-1.11.0/LICENSE %{buildroot}/usr/share/package-licenses/libvpx/4dbe7c1f3a1833a88333a7c282119323e9ef44fa
