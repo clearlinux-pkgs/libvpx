@@ -4,7 +4,7 @@
 #
 Name     : libvpx
 Version  : 1.11.0
-Release  : 24
+Release  : 25
 URL      : https://github.com/webmproject/libvpx/archive/v1.11.0/libvpx-1.11.0.tar.gz
 Source0  : https://github.com/webmproject/libvpx/archive/v1.11.0/libvpx-1.11.0.tar.gz
 Summary  : No detailed summary available
