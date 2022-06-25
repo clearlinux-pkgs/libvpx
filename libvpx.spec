@@ -4,7 +4,7 @@
 #
 Name     : libvpx
 Version  : 1.11.0
-Release  : 27
+Release  : 28
 URL      : https://github.com/webmproject/libvpx/archive/v1.11.0/libvpx-1.11.0.tar.gz
 Source0  : https://github.com/webmproject/libvpx/archive/v1.11.0/libvpx-1.11.0.tar.gz
 Summary  : No detailed summary available
@@ -86,7 +86,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1633758347
+export SOURCE_DATE_EPOCH=1656134233
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -100,16 +100,16 @@ make  %{?_smp_mflags}  V=1 AS_FLAGS="-a AMD64"
 
 unset PKG_CONFIG_PATH
 pushd ../buildavx2/
-export CFLAGS="$CFLAGS -m64 -march=x86-64-v3"
-export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3"
-export FFLAGS="$FFLAGS -m64 -march=x86-64-v3"
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
 export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3"
 export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
 %configure --disable-static || : ; CC=gcc CXX=g++ AR=ar STRIP=strip NM=nm ./configure --prefix=/usr --libdir=/usr/lib64 --target=x86_64-linux-gnu --disable-static --enable-libs --enable-vp8 --enable-vp9 --enable-runtime-cpu-detect --enable-shared --enable-webm-io --enable-experimental
 make  %{?_smp_mflags}  V=1 AS_FLAGS="-a AMD64"
 popd
 %install
-export SOURCE_DATE_EPOCH=1633758347
+export SOURCE_DATE_EPOCH=1656134233
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libvpx
 cp %{_builddir}/libvpx-1.11.0/LICENSE %{buildroot}/usr/share/package-licenses/libvpx/4dbe7c1f3a1833a88333a7c282119323e9ef44fa
@@ -119,9 +119,9 @@ cp %{_builddir}/libvpx-1.11.0/third_party/libyuv/LICENSE %{buildroot}/usr/share/
 cp %{_builddir}/libvpx-1.11.0/third_party/x86inc/LICENSE %{buildroot}/usr/share/package-licenses/libvpx/697c7d5a9839cf4160acd85431b0c58be874dba8
 pushd ../buildavx2/
 %make_install_v3
-/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 popd
 %make_install
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -153,10 +153,13 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
+/usr/lib64/glibc-hwcaps/x86-64-v3/libvpx.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libvpx.so.7
+/usr/lib64/glibc-hwcaps/x86-64-v3/libvpx.so.7.0
+/usr/lib64/glibc-hwcaps/x86-64-v3/libvpx.so.7.0.0
 /usr/lib64/libvpx.so.7
 /usr/lib64/libvpx.so.7.0
 /usr/lib64/libvpx.so.7.0.0
-/usr/share/clear/optimized-elf/lib*
 
 %files license
 %defattr(0644,root,root,0755)
