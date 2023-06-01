@@ -5,7 +5,7 @@
 #
 Name     : libvpx
 Version  : 1.13.0
-Release  : 38
+Release  : 39
 URL      : https://github.com/webmproject/libvpx/archive/v1.13.0/libvpx-1.13.0.tar.gz
 Source0  : https://github.com/webmproject/libvpx/archive/v1.13.0/libvpx-1.13.0.tar.gz
 Summary  : No detailed summary available
@@ -81,7 +81,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1683051921
+export SOURCE_DATE_EPOCH=1685634092
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -104,7 +104,7 @@ export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
 make  %{?_smp_mflags}  V=1 AS_FLAGS="-a AMD64"
 popd
 %install
-export SOURCE_DATE_EPOCH=1683051921
+export SOURCE_DATE_EPOCH=1685634092
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libvpx
 cp %{_builddir}/libvpx-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/libvpx/4dbe7c1f3a1833a88333a7c282119323e9ef44fa || :
@@ -130,7 +130,6 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib64/libvpx.so
 /usr/include/vpx/vp8.h
 /usr/include/vpx/vp8cx.h
 /usr/include/vpx/vp8dx.h
@@ -146,8 +145,6 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libvpx.so.8
-/V3/usr/lib64/libvpx.so.8.0
 /V3/usr/lib64/libvpx.so.8.0.0
 /usr/lib64/libvpx.so.8
 /usr/lib64/libvpx.so.8.0
